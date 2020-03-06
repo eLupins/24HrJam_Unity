@@ -31,4 +31,4 @@ public class Player_2D : MonoBehaviour
         rb2d.AddForce(movement * speed);
     }
 }
-}
+

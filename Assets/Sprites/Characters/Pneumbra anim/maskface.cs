@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-
-/*
- * TO DO LIST:
- * -figure out how to fix the pacer function... sdfasdfa
- * -Figure out how to trigger an attack based on the player's range of the enemy.
- * -Maybe a spawn animation in due time?
- */
-
-
+//** This script is specific to the Pneumbra Anim assets **/
 public class maskface : baseEnemy {
 
     public Transform[] WayPoints;
@@ -37,7 +29,6 @@ public class maskface : baseEnemy {
         damage = 3;
         health = 5;
         speed = 3.0f;
-   
         
 	}
 	
@@ -65,7 +56,7 @@ public class maskface : baseEnemy {
         if (currentPos >= WayPoints.Length)
         {
             currentPos = 0;  // reset so that I go back to waypoint A
-            skeleton.flipX = false; 
+            skeleton.FlipX = false; 
 
 
         }
@@ -74,7 +65,7 @@ public class maskface : baseEnemy {
         if (Vector2.Distance(transform.position, WayPoints[currentPos].position) < waypointDistance) //if Im at waypoint A...
         {
             currentPos++;// increase the current position so that I can movve to the next waypoint 
-            skeleton.flipX = true; 
+            skeleton.FlipX = true; 
 
         }
 
@@ -85,7 +76,7 @@ public class maskface : baseEnemy {
     {
         if (col.gameObject.tag == "attack")
         {
-            TakeDamage(projectiles.dmg);
+            
             if (health <= 0)
             {
 
@@ -95,8 +86,6 @@ public class maskface : baseEnemy {
             {
                 animator.Play("dmg");
             }
-        
-            //baseEnemy.TakeDamage(player.dmg); // just pop in a damage int from whatever skill hits it
         }
 
         if (col.gameObject.tag == "Player")
